@@ -1,0 +1,36 @@
+# ============================================================
+# bigsmall_inference.py  —  configuration file
+# ============================================================
+# All paths are relative to the repository root unless absolute.
+# Run with:
+#   python bigsmall_inference.py --config configs/infer_configs/bigsmall_inference.yaml
+
+# ── Paths ────────────────────────────────────────────────────
+RAW_DATA_PATH:     raw_data/PPG_Dataset
+PREPROCESSED_PATH: preprocessed_bigsmall
+MODEL_PATH:        final_model_release/BP4D_BigSmall_Multitask_Fold1.pth
+OUTPUT_DIR:        results_bigsmall/PPG_Dataset
+
+# ── Video / signal parameters ────────────────────────────────
+VIDEO_FPS: 30     # camera frame rate (fps)
+PPG_FS:    25     # PPG sensor sampling rate (Hz)
+
+# ── BigSmall preprocessing ───────────────────────────────────
+CHUNK_LENGTH: 3   # frames per clip (must match training config)
+BIG_H:  144       # big-stream frame height (pixels)
+BIG_W:  144       # big-stream frame width  (pixels)
+SMALL_H: 9        # small-stream frame height (pixels)
+SMALL_W: 9        # small-stream frame width  (pixels)
+
+# ── DataLoader ───────────────────────────────────────────────
+BATCH_SIZE:  32
+NUM_WORKERS: 4
+
+# ── Hardware ─────────────────────────────────────────────────
+DEVICE: cuda:0    # set to "cpu" if no GPU available
+
+# ── Label layout (49-channel BP4D+ label vector) ─────────────
+LABEL_IDX_BVP:  0   # bp_wave  (green-channel PPG)
+LABEL_IDX_HR:   1   # HR_bpm
+LABEL_IDX_RESP: 5   # resp_wave
+NUM_LABEL_CH:   49
