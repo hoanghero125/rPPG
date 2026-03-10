@@ -2,8 +2,9 @@ import math
 import torch
 import torch.nn as nn
 from timm.models.layers import trunc_normal_, DropPath
-from mamba_ssm import Mamba
 from torch.nn import functional as F
+from einops import rearrange, repeat
+from mamba_ssm.ops.selective_scan_interface import selective_scan_fn
 
 class ChannelAttention3D(nn.Module):
     def __init__(self, in_channels, reduction):
@@ -68,19 +69,107 @@ class CDC_T(nn.Module):
             else:
                 return out_normal
     
+class BiMamba(nn.Module):
+    """Bidirectional Mamba matching the Vim (Vision Mamba) checkpoint format.
+
+    Shares in_proj and out_proj between forward and backward SSM passes.
+    Backward pass parameters use '_b' suffix (A_b_log, D_b, conv1d_b, etc.).
+    """
+    def __init__(self, d_model, d_state=16, d_conv=4, expand=2,
+                 dt_rank="auto", conv_bias=True, bias=False,
+                 device=None, dtype=None):
+        factory_kwargs = {"device": device, "dtype": dtype}
+        super().__init__()
+        self.d_model = d_model
+        self.d_state = d_state
+        self.d_conv = d_conv
+        self.expand = expand
+        self.d_inner = int(self.expand * self.d_model)
+        self.dt_rank = math.ceil(self.d_model / 16) if dt_rank == "auto" else dt_rank
+
+        # Shared projections
+        self.in_proj = nn.Linear(self.d_model, self.d_inner * 2, bias=bias, **factory_kwargs)
+        self.out_proj = nn.Linear(self.d_inner, self.d_model, bias=bias, **factory_kwargs)
+
+        self.activation = "silu"
+        self.act = nn.SiLU()
+
+        # Forward SSM parameters
+        self.conv1d = nn.Conv1d(
+            self.d_inner, self.d_inner, bias=conv_bias,
+            kernel_size=d_conv, groups=self.d_inner, padding=d_conv - 1, **factory_kwargs)
+        self.x_proj = nn.Linear(self.d_inner, self.dt_rank + self.d_state * 2, bias=False, **factory_kwargs)
+        self.dt_proj = nn.Linear(self.dt_rank, self.d_inner, bias=True, **factory_kwargs)
+        A = repeat(torch.arange(1, self.d_state + 1, dtype=torch.float32, device=device),
+                   "n -> d n", d=self.d_inner).contiguous()
+        self.A_log = nn.Parameter(torch.log(A))
+        self.D = nn.Parameter(torch.ones(self.d_inner, device=device))
+
+        # Backward SSM parameters (suffix _b)
+        self.conv1d_b = nn.Conv1d(
+            self.d_inner, self.d_inner, bias=conv_bias,
+            kernel_size=d_conv, groups=self.d_inner, padding=d_conv - 1, **factory_kwargs)
+        self.x_proj_b = nn.Linear(self.d_inner, self.dt_rank + self.d_state * 2, bias=False, **factory_kwargs)
+        self.dt_proj_b = nn.Linear(self.dt_rank, self.d_inner, bias=True, **factory_kwargs)
+        self.A_b_log = nn.Parameter(torch.log(A.clone()))
+        self.D_b = nn.Parameter(torch.ones(self.d_inner, device=device))
+
+    def _ssm_forward(self, x, z, conv1d, x_proj, dt_proj, A_log, D, flip=False):
+        """Run one direction of the selective scan."""
+        seqlen = x.shape[-1]
+        if flip:
+            x = x.flip([-1])
+
+        x = self.act(conv1d(x)[..., :seqlen])
+
+        x_dbl = x_proj(rearrange(x, "b d l -> (b l) d"))
+        dt, B, C = torch.split(x_dbl, [self.dt_rank, self.d_state, self.d_state], dim=-1)
+        dt = dt_proj.weight @ dt.t()
+        dt = rearrange(dt, "d (b l) -> b d l", l=seqlen)
+        B = rearrange(B, "(b l) dstate -> b dstate l", l=seqlen).contiguous()
+        C = rearrange(C, "(b l) dstate -> b dstate l", l=seqlen).contiguous()
+
+        A = -torch.exp(A_log.float())
+        y = selective_scan_fn(x, dt, A, B, C, D.float(),
+                              z=None, delta_bias=dt_proj.bias.float(),
+                              delta_softplus=True)
+        if flip:
+            y = y.flip([-1])
+        return y
+
+    def forward(self, hidden_states):
+        batch, seqlen, dim = hidden_states.shape
+
+        xz = rearrange(
+            self.in_proj.weight @ rearrange(hidden_states, "b l d -> d (b l)"),
+            "d (b l) -> b d l", l=seqlen)
+        if self.in_proj.bias is not None:
+            xz = xz + rearrange(self.in_proj.bias.to(dtype=xz.dtype), "d -> d 1")
+
+        x, z = xz.chunk(2, dim=1)
+
+        y_fwd = self._ssm_forward(x, z, self.conv1d, self.x_proj, self.dt_proj,
+                                   self.A_log, self.D, flip=False)
+        y_bwd = self._ssm_forward(x, z, self.conv1d_b, self.x_proj_b, self.dt_proj_b,
+                                   self.A_b_log, self.D_b, flip=True)
+
+        y = (y_fwd + y_bwd) * self.act(z)
+        y = rearrange(y, "b d l -> b l d")
+        return self.out_proj(y)
+
+
 class MambaLayer(nn.Module):
-    def __init__(self, dim, d_state = 16, d_conv = 4, expand = 2, channel_token = False):
+    def __init__(self, dim, d_state=16, d_conv=4, expand=2, channel_token=False):
         super(MambaLayer, self).__init__()
         self.dim = dim
         self.norm1 = nn.LayerNorm(dim)
         self.norm2 = nn.LayerNorm(dim)
         drop_path = 0
-        self.mamba = Mamba(
-                d_model=dim, # Model dimension d_model
-                d_state=d_state,  # SSM state expansion factor
-                d_conv=d_conv,    # Local convolution width
-                expand=expand,    # Block expansion factor
-                bimamba=True,
+        self.mamba = BiMamba(
+                d_model=dim,
+                d_state=d_state,
+                d_conv=d_conv,
+                expand=expand,
         )
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         self.apply(self._init_weights)
@@ -111,7 +200,7 @@ class MambaLayer(nn.Module):
         x_mamba = self.mamba(x_norm)
         x_out = self.norm2(x_flat + self.drop_path(x_mamba))
         out = x_out.transpose(-1, -2).reshape(B, d_model, *img_dims)
-        return out 
+        return out
 
     def forward(self, x):
         if x.dtype == torch.float16 or x.dtype == torch.bfloat16:

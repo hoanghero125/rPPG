@@ -1,0 +1,82 @@
+{
+  "model": "BigSmall (BP4D_BigSmall_Multitask_Fold3)",
+  "n_subjects": 5,
+  "evaluation_method": "FFT",
+  "bvp_bandpass_hz": [
+    0.6,
+    3.3
+  ],
+  "resp_bandpass_hz": [
+    0.13,
+    0.5
+  ],
+  "aggregate_metrics": {
+    "MAE": {
+      "value": 2.8778053075396826,
+      "se": 0.671129310978865,
+      "unit": "bpm"
+    },
+    "RMSE": {
+      "value": 3.2455871808315977,
+      "se": 1.9743751193572185,
+      "unit": "bpm"
+    },
+    "MAPE": {
+      "value": 3.6948243913801124,
+      "se": 0.808533219059599,
+      "unit": "%"
+    },
+    "Pearson": {
+      "value": 0.9843903450845125,
+      "se": 0.1016130708527769,
+      "unit": ""
+    },
+    "SNR": {
+      "value": 0.9269547677163926,
+      "se": 1.5745523494547629,
+      "unit": "dB"
+    }
+  },
+  "per_subject": [
+    {
+      "name": "S_000",
+      "predicted_heartrate": 88.330078125,
+      "real_heartrate": 85.6375,
+      "heartrate_error": 2.692578124999997,
+      "respiration_rate": 20.654296875,
+      "snr_db": 4.123704488632512
+    },
+    {
+      "name": "S_001",
+      "predicted_heartrate": 92.28515625,
+      "real_heartrate": 87.14285714285714,
+      "heartrate_error": 5.142299107142861,
+      "respiration_rate": 24.169921875,
+      "snr_db": -5.854379390423955
+    },
+    {
+      "name": "S_002",
+      "predicted_heartrate": 71.19140625,
+      "real_heartrate": 68.44444444444444,
+      "heartrate_error": 2.746961805555557,
+      "respiration_rate": 22.412109375,
+      "snr_db": 1.6717348942410193
+    },
+    {
+      "name": "S_003",
+      "predicted_heartrate": 80.419921875,
+      "real_heartrate": 79.9625,
+      "heartrate_error": 0.4574218749999943,
+      "respiration_rate": 28.564453125,
+      "snr_db": 1.5762292281319124
+    },
+    {
+      "name": "S_004",
+      "predicted_heartrate": 72.509765625,
+      "real_heartrate": 69.16,
+      "heartrate_error": 3.3497656250000034,
+      "respiration_rate": 25.927734375,
+      "snr_db": 3.117484618000474
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "model": "MA-UBFC_efficientphys",
+  "n_subjects": 5,
+  "evaluation_method": "FFT",
+  "bvp_bandpass_hz": [
+    0.6,
+    3.3
+  ],
+  "aggregate_metrics": {
+    "MAE": {
+      "value": 1.012549126678411,
+      "se": 0.5183885598796059,
+      "unit": "bpm"
+    },
+    "RMSE": {
+      "value": 1.539119627906639,
+      "se": 1.361385920643318,
+      "unit": "bpm"
+    },
+    "MAPE": {
+      "value": 1.3457584203474526,
+      "se": 0.7022291599325852,
+      "unit": "%"
+    },
+    "Pearson": {
+      "value": 0.9878969496652058,
+      "se": 0.0895537396244695,
+      "unit": ""
+    },
+    "SNR": {
+      "value": 0.9836857007901021,
+      "se": 1.2851163038393048,
+      "unit": "dB"
+    }
+  },
+  "per_subject": [
+    {
+      "name": "S_000",
+      "predicted_heartrate": 79.541015625,
+      "real_heartrate": 80.49295774647888,
+      "heartrate_error": -0.9519421214788792,
+      "snr_db": -2.0393783201695954
+    },
+    {
+      "name": "S_001",
+      "predicted_heartrate": 88.330078125,
+      "real_heartrate": 87.97101449275362,
+      "heartrate_error": 0.35906363224637516,
+      "snr_db": -2.20716397010334
+    },
+    {
+      "name": "S_002",
+      "predicted_heartrate": 70.751953125,
+      "real_heartrate": 74.01282051282051,
+      "heartrate_error": -3.260867387820511,
+      "snr_db": 0.7206792208315905
+    },
+    {
+      "name": "S_003",
+      "predicted_heartrate": 65.0390625,
+      "real_heartrate": 65.45121951219512,
+      "heartrate_error": -0.4121570121951237,
+      "snr_db": 4.901572124965059
+    },
+    {
+      "name": "S_004",
+      "predicted_heartrate": 76.904296875,
+      "real_heartrate": 76.82558139534883,
+      "heartrate_error": 0.07871547965116577,
+      "snr_db": 3.542719448426796
+    }
+  ]
+}

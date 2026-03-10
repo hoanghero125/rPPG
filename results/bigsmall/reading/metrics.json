@@ -1,0 +1,82 @@
+{
+  "model": "BP4D_BigSmall_Multitask_Fold1",
+  "n_subjects": 5,
+  "evaluation_method": "FFT",
+  "bvp_bandpass_hz": [
+    0.6,
+    3.3
+  ],
+  "resp_bandpass_hz": [
+    0.13,
+    0.5
+  ],
+  "aggregate_metrics": {
+    "MAE": {
+      "value": 2.2436874819193946,
+      "se": 0.9394999551931836,
+      "unit": "bpm"
+    },
+    "RMSE": {
+      "value": 3.073667897734198,
+      "se": 2.304760442107662,
+      "unit": "bpm"
+    },
+    "MAPE": {
+      "value": 2.9137244498383628,
+      "se": 1.2455467903030644,
+      "unit": "%"
+    },
+    "Pearson": {
+      "value": 0.9611576353839903,
+      "se": 0.15934867423677784,
+      "unit": ""
+    },
+    "SNR": {
+      "value": -1.2296931726485514,
+      "se": 1.2028029093458052,
+      "unit": "dB"
+    }
+  },
+  "per_subject": [
+    {
+      "name": "S_000",
+      "predicted_heartrate": 76.46484375,
+      "real_heartrate": 80.49295774647888,
+      "heartrate_error": -4.028113996478879,
+      "respiration_rate": 24.169921875,
+      "snr_db": -3.38648974295484
+    },
+    {
+      "name": "S_001",
+      "predicted_heartrate": 87.01171875,
+      "real_heartrate": 87.97101449275362,
+      "heartrate_error": -0.9592957427536248,
+      "respiration_rate": 22.412109375,
+      "snr_db": -4.440929723129959
+    },
+    {
+      "name": "S_002",
+      "predicted_heartrate": 68.5546875,
+      "real_heartrate": 74.01282051282051,
+      "heartrate_error": -5.458133012820511,
+      "respiration_rate": 20.21484375,
+      "snr_db": 0.17435439113175408
+    },
+    {
+      "name": "S_003",
+      "predicted_heartrate": 65.0390625,
+      "real_heartrate": 65.45121951219512,
+      "heartrate_error": -0.4121570121951237,
+      "respiration_rate": 28.564453125,
+      "snr_db": 3.1373173238183294
+    },
+    {
+      "name": "S_004",
+      "predicted_heartrate": 76.46484375,
+      "real_heartrate": 76.82558139534883,
+      "heartrate_error": -0.36073764534883423,
+      "respiration_rate": 29.443359375,
+      "snr_db": -1.6327181121080405
+    }
+  ]
+}
