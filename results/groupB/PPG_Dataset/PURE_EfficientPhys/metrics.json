@@ -1,0 +1,458 @@
+{
+  "model": "PURE_EfficientPhys",
+  "n_subjects": 60,
+  "evaluation_method": "FFT",
+  "bvp_bandpass_hz": [
+    0.6,
+    3.3
+  ],
+  "aggregate_metrics": {
+    "MAE": {
+      "value": 16.106148666654384,
+      "se": 3.068875530245844,
+      "unit": "bpm"
+    },
+    "RMSE": {
+      "value": 28.713896393225276,
+      "se": 15.12663391703168,
+      "unit": "bpm"
+    },
+    "MAPE": {
+      "value": 16.824227785503584,
+      "se": 3.0423675195015694,
+      "unit": "%"
+    },
+    "Pearson": {
+      "value": 0.19959539840106885,
+      "se": 0.1286643372163772,
+      "unit": ""
+    },
+    "SNR": {
+      "value": -4.557170434294052,
+      "se": 0.4388088293153973,
+      "unit": "dB"
+    }
+  },
+  "per_subject": [
+    {
+      "name": "S_000",
+      "predicted_heartrate": 81.73828125,
+      "real_heartrate": 83.5375,
+      "heartrate_error": -1.7992187499999943,
+      "snr_db": -5.083530922290182
+    },
+    {
+      "name": "S_001",
+      "predicted_heartrate": 80.419921875,
+      "real_heartrate": 80.3974358974359,
+      "heartrate_error": 0.0224859775641022,
+      "snr_db": 0.8070085364986074
+    },
+    {
+      "name": "S_002",
+      "predicted_heartrate": 57.568359375,
+      "real_heartrate": 122.47916666666667,
+      "heartrate_error": -64.91080729166667,
+      "snr_db": -11.711308413964751
+    },
+    {
+      "name": "S_003",
+      "predicted_heartrate": 180.17578125,
+      "real_heartrate": 114.92156862745098,
+      "heartrate_error": 65.25421262254902,
+      "snr_db": -9.44265517120499
+    },
+    {
+      "name": "S_004",
+      "predicted_heartrate": 86.1328125,
+      "real_heartrate": 79.125,
+      "heartrate_error": 7.0078125,
+      "snr_db": -4.955261245602346
+    },
+    {
+      "name": "S_005",
+      "predicted_heartrate": 85.25390625,
+      "real_heartrate": 92.7875,
+      "heartrate_error": -7.533593749999994,
+      "snr_db": -6.741193294632362
+    },
+    {
+      "name": "S_006",
+      "predicted_heartrate": 106.34765625,
+      "real_heartrate": 106.72839506172839,
+      "heartrate_error": -0.3807388117283921,
+      "snr_db": -3.346455068633011
+    },
+    {
+      "name": "S_007",
+      "predicted_heartrate": 36.474609375,
+      "real_heartrate": 103.53086419753086,
+      "heartrate_error": -67.05625482253086,
+      "snr_db": -8.160215385717464
+    },
+    {
+      "name": "S_008",
+      "predicted_heartrate": 89.6484375,
+      "real_heartrate": 90.29629629629629,
+      "heartrate_error": -0.6478587962962905,
+      "snr_db": -3.3858477910727607
+    },
+    {
+      "name": "S_009",
+      "predicted_heartrate": 78.662109375,
+      "real_heartrate": 81.0886075949367,
+      "heartrate_error": -2.426498219936704,
+      "snr_db": 1.9961829694962716
+    },
+    {
+      "name": "S_010",
+      "predicted_heartrate": 51.85546875,
+      "real_heartrate": 98.06172839506173,
+      "heartrate_error": -46.206259645061735,
+      "snr_db": -9.449308024280041
+    },
+    {
+      "name": "S_011",
+      "predicted_heartrate": 70.751953125,
+      "real_heartrate": 72.5679012345679,
+      "heartrate_error": -1.8159481095678984,
+      "snr_db": -2.7427642033002964
+    },
+    {
+      "name": "S_012",
+      "predicted_heartrate": 80.419921875,
+      "real_heartrate": 81.48809523809524,
+      "heartrate_error": -1.0681733630952408,
+      "snr_db": -4.866757921587283
+    },
+    {
+      "name": "S_013",
+      "predicted_heartrate": 180.17578125,
+      "real_heartrate": 90.24489795918367,
+      "heartrate_error": 89.93088329081633,
+      "snr_db": -5.551268584620997
+    },
+    {
+      "name": "S_014",
+      "predicted_heartrate": 85.693359375,
+      "real_heartrate": 83.33333333333333,
+      "heartrate_error": 2.3600260416666714,
+      "snr_db": -6.542477717091677
+    },
+    {
+      "name": "S_015",
+      "predicted_heartrate": 75.5859375,
+      "real_heartrate": 79.21176470588236,
+      "heartrate_error": -3.6258272058823593,
+      "snr_db": -5.536753894946271
+    },
+    {
+      "name": "S_016",
+      "predicted_heartrate": 47.021484375,
+      "real_heartrate": 95.48101265822785,
+      "heartrate_error": -48.459528283227854,
+      "snr_db": -7.600074986219258
+    },
+    {
+      "name": "S_017",
+      "predicted_heartrate": 53.61328125,
+      "real_heartrate": 90.58571428571429,
+      "heartrate_error": -36.97243303571429,
+      "snr_db": -9.073447904835486
+    },
+    {
+      "name": "S_018",
+      "predicted_heartrate": 93.1640625,
+      "real_heartrate": 86.0,
+      "heartrate_error": 7.1640625,
+      "snr_db": -6.749501883803416
+    },
+    {
+      "name": "S_019",
+      "predicted_heartrate": 47.4609375,
+      "real_heartrate": 96.5375,
+      "heartrate_error": -49.076562499999994,
+      "snr_db": -7.409277745512265
+    },
+    {
+      "name": "S_020",
+      "predicted_heartrate": 79.1015625,
+      "real_heartrate": 80.92682926829268,
+      "heartrate_error": -1.8252667682926784,
+      "snr_db": -1.7464607542194277
+    },
+    {
+      "name": "S_021",
+      "predicted_heartrate": 60.205078125,
+      "real_heartrate": 118.46478873239437,
+      "heartrate_error": -58.25971060739437,
+      "snr_db": -8.093735736296916
+    },
+    {
+      "name": "S_022",
+      "predicted_heartrate": 61.962890625,
+      "real_heartrate": 87.14285714285714,
+      "heartrate_error": -25.17996651785714,
+      "snr_db": -5.809668413580171
+    },
+    {
+      "name": "S_023",
+      "predicted_heartrate": 70.3125,
+      "real_heartrate": 77.51851851851852,
+      "heartrate_error": -7.206018518518519,
+      "snr_db": -3.4106904983653346
+    },
+    {
+      "name": "S_024",
+      "predicted_heartrate": 77.783203125,
+      "real_heartrate": 77.18181818181819,
+      "heartrate_error": 0.601384943181813,
+      "snr_db": -3.947709448696783
+    },
+    {
+      "name": "S_025",
+      "predicted_heartrate": 61.5234375,
+      "real_heartrate": 61.475,
+      "heartrate_error": 0.04843749999999858,
+      "snr_db": -3.7175748773679778
+    },
+    {
+      "name": "S_026",
+      "predicted_heartrate": 67.67578125,
+      "real_heartrate": 70.50617283950618,
+      "heartrate_error": -2.8303915895061778,
+      "snr_db": 0.11961886112108563
+    },
+    {
+      "name": "S_027",
+      "predicted_heartrate": 72.94921875,
+      "real_heartrate": 102.07777777777778,
+      "heartrate_error": -29.128559027777783,
+      "snr_db": -8.990526004783163
+    },
+    {
+      "name": "S_028",
+      "predicted_heartrate": 83.49609375,
+      "real_heartrate": 73.88732394366197,
+      "heartrate_error": 9.608769806338032,
+      "snr_db": -4.708732678937895
+    },
+    {
+      "name": "S_029",
+      "predicted_heartrate": 94.482421875,
+      "real_heartrate": 97.88607594936708,
+      "heartrate_error": -3.4036540743670827,
+      "snr_db": -6.891018151063766
+    },
+    {
+      "name": "S_030",
+      "predicted_heartrate": 50.09765625,
+      "real_heartrate": 79.42682926829268,
+      "heartrate_error": -29.32917301829268,
+      "snr_db": -6.081228269758752
+    },
+    {
+      "name": "S_031",
+      "predicted_heartrate": 180.17578125,
+      "real_heartrate": 91.39506172839506,
+      "heartrate_error": 88.78071952160494,
+      "snr_db": -4.923796333137726
+    },
+    {
+      "name": "S_032",
+      "predicted_heartrate": 88.330078125,
+      "real_heartrate": 86.86842105263158,
+      "heartrate_error": 1.4616570723684248,
+      "snr_db": 0.48607837415489097
+    },
+    {
+      "name": "S_033",
+      "predicted_heartrate": 83.935546875,
+      "real_heartrate": 85.6375,
+      "heartrate_error": -1.7019531250000028,
+      "snr_db": 1.0156081440848201
+    },
+    {
+      "name": "S_034",
+      "predicted_heartrate": 91.845703125,
+      "real_heartrate": 94.28571428571429,
+      "heartrate_error": -2.440011160714292,
+      "snr_db": -4.175458655014783
+    },
+    {
+      "name": "S_035",
+      "predicted_heartrate": 67.236328125,
+      "real_heartrate": 109.97727272727273,
+      "heartrate_error": -42.740944602272734,
+      "snr_db": -10.425146403849867
+    },
+    {
+      "name": "S_036",
+      "predicted_heartrate": 82.177734375,
+      "real_heartrate": 81.46913580246914,
+      "heartrate_error": 0.7085985725308603,
+      "snr_db": -3.3644666638700738
+    },
+    {
+      "name": "S_037",
+      "predicted_heartrate": 72.509765625,
+      "real_heartrate": 71.8170731707317,
+      "heartrate_error": 0.6926924542682968,
+      "snr_db": -2.486461047820562
+    },
+    {
+      "name": "S_038",
+      "predicted_heartrate": 65.91796875,
+      "real_heartrate": 66.025,
+      "heartrate_error": -0.10703125000000568,
+      "snr_db": -2.093974469472091
+    },
+    {
+      "name": "S_039",
+      "predicted_heartrate": 86.572265625,
+      "real_heartrate": 102.05333333333333,
+      "heartrate_error": -15.481067708333327,
+      "snr_db": -7.766814552561422
+    },
+    {
+      "name": "S_040",
+      "predicted_heartrate": 90.087890625,
+      "real_heartrate": 90.46341463414635,
+      "heartrate_error": -0.3755240091463463,
+      "snr_db": -1.9540171734448697
+    },
+    {
+      "name": "S_041",
+      "predicted_heartrate": 60.205078125,
+      "real_heartrate": 117.71232876712328,
+      "heartrate_error": -57.50725064212328,
+      "snr_db": -9.35543430140081
+    },
+    {
+      "name": "S_042",
+      "predicted_heartrate": 57.568359375,
+      "real_heartrate": 62.93827160493827,
+      "heartrate_error": -5.369912229938272,
+      "snr_db": -1.3127493524139227
+    },
+    {
+      "name": "S_043",
+      "predicted_heartrate": 63.720703125,
+      "real_heartrate": 57.78082191780822,
+      "heartrate_error": 5.939881207191782,
+      "snr_db": -6.450071199480664
+    },
+    {
+      "name": "S_044",
+      "predicted_heartrate": 73.388671875,
+      "real_heartrate": 75.18072289156626,
+      "heartrate_error": -1.792051016566262,
+      "snr_db": -1.2497452151490274
+    },
+    {
+      "name": "S_045",
+      "predicted_heartrate": 77.34375,
+      "real_heartrate": 75.65,
+      "heartrate_error": 1.6937499999999943,
+      "snr_db": -0.23368648261567426
+    },
+    {
+      "name": "S_046",
+      "predicted_heartrate": 70.3125,
+      "real_heartrate": 62.875,
+      "heartrate_error": 7.4375,
+      "snr_db": -5.230807178805876
+    },
+    {
+      "name": "S_047",
+      "predicted_heartrate": 68.115234375,
+      "real_heartrate": 70.92682926829268,
+      "heartrate_error": -2.8115948932926784,
+      "snr_db": -4.487988382395109
+    },
+    {
+      "name": "S_048",
+      "predicted_heartrate": 100.634765625,
+      "real_heartrate": 101.67088607594937,
+      "heartrate_error": -1.0361204509493689,
+      "snr_db": -6.451987799894915
+    },
+    {
+      "name": "S_049",
+      "predicted_heartrate": 64.16015625,
+      "real_heartrate": 63.8,
+      "heartrate_error": 0.36015625000000284,
+      "snr_db": -3.0557248901491056
+    },
+    {
+      "name": "S_050",
+      "predicted_heartrate": 87.01171875,
+      "real_heartrate": 87.76829268292683,
+      "heartrate_error": -0.7565739329268268,
+      "snr_db": -4.505498016756908
+    },
+    {
+      "name": "S_051",
+      "predicted_heartrate": 79.1015625,
+      "real_heartrate": 80.16455696202532,
+      "heartrate_error": -1.0629944620253156,
+      "snr_db": -1.7362092599178258
+    },
+    {
+      "name": "S_052",
+      "predicted_heartrate": 86.572265625,
+      "real_heartrate": 71.12048192771084,
+      "heartrate_error": 15.451783697289159,
+      "snr_db": -4.097487286786637
+    },
+    {
+      "name": "S_053",
+      "predicted_heartrate": 72.509765625,
+      "real_heartrate": 69.16,
+      "heartrate_error": 3.3497656250000034,
+      "snr_db": 0.6684180631717782
+    },
+    {
+      "name": "S_054",
+      "predicted_heartrate": 71.19140625,
+      "real_heartrate": 64.5952380952381,
+      "heartrate_error": 6.596168154761898,
+      "snr_db": -4.319140087369063
+    },
+    {
+      "name": "S_055",
+      "predicted_heartrate": 71.19140625,
+      "real_heartrate": 73.0,
+      "heartrate_error": -1.80859375,
+      "snr_db": 4.011406589960695
+    },
+    {
+      "name": "S_056",
+      "predicted_heartrate": 97.55859375,
+      "real_heartrate": 97.20987654320987,
+      "heartrate_error": 0.34871720679012697,
+      "snr_db": -3.66046524139362
+    },
+    {
+      "name": "S_057",
+      "predicted_heartrate": 71.19140625,
+      "real_heartrate": 68.44444444444444,
+      "heartrate_error": 2.746961805555557,
+      "snr_db": -0.8048618529770644
+    },
+    {
+      "name": "S_058",
+      "predicted_heartrate": 72.509765625,
+      "real_heartrate": 79.9625,
+      "heartrate_error": -7.452734375000006,
+      "snr_db": -4.414314953472317
+    },
+    {
+      "name": "S_059",
+      "predicted_heartrate": 61.5234375,
+      "real_heartrate": 78.73913043478261,
+      "heartrate_error": -17.21569293478261,
+      "snr_db": -12.232795803596343
+    }
+  ]
+}
