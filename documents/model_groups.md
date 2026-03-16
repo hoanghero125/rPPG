@@ -172,7 +172,7 @@ All in `final_model_release/`. Naming: `{TrainDataset}_{ModelName}[_Variant].pth
 
 ```
 final_model_release/
-├── BP4D_BigSmall_Multitask_Fold{1,2,3}.pth
+├── BP4D_BigSmall_Multitask_Fold1.pth
 ├── BP4D_PseudoLabel_{DeepPhys,TSCAN,EfficientPhys,PhysNet_DiffNormalized}.pth
 ├── MA-UBFC_{deepphys,tscan,efficientphys,physnet}.pth
 ├── PURE_{DeepPhys,TSCAN,EfficientPhys,RhythmFormer}.pth
